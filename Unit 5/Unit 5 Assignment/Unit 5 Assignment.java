@@ -15,7 +15,6 @@ public class ChowTechArrayStreaming {
 	// it should be mentioned that we could create 2 arrays with the size 10000 given that all employee IDs are 4 digit
 	// numbers and there are only 10000 possible 4 digit numbers
 	// thus avoiding the need to extend the arrays every time a new employee ID is read
-	// but this was avoided to reduce excessive usage of RAM space by the arrays
 	
 	public static void streamDoc() throws FileNotFoundException // streams the document and creates the arrays
 	{
@@ -25,10 +24,7 @@ public class ChowTechArrayStreaming {
 		double saleValue;
 		int employeePos;
 		
-		
-		
 		// Method Body
-		
 		// We skip two lines in the input file since they don't contains any relevant data
 		in.nextLine();
 		in.nextLine();
@@ -107,11 +103,11 @@ public class ChowTechArrayStreaming {
 		return salesvalue*0.05;
 	}
 	
-	public static void main(String[] args) throws IOException{
+	public static void main(String[] args) throws IOException
+	{
 		// Global Variables
 		Scanner userInput;
 		String documentYear;
-		
 		
 		// Run Code
 		userInput = new Scanner(System.in);
