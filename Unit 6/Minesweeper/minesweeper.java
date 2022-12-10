@@ -25,9 +25,9 @@ public class minesweeper extends JPanel implements MouseListener, Runnable {
     public static int posX;
     public static int posY;
     public static int difficulty = 1; // all variables are set to easy so that the board may initialize
-    // 1 = easy, 10 x 10, 10 mines
-    // 2 = medium, 16 x 16, 40 mines
-    // 3 = hard, 30 x 16, 99 mines
+    // 1 = easy, 10 x 10, 10 mines, 500x500 gameboard
+    // 2 = medium, 16 x 16, 40 mines, 800x800 gameboard
+    // 3 = hard, 30 x 16, 99 mines, 1500x800 gameboard
     public static int ROWS = 10;
     public static int COLS = 10;
     public static int numMines = 10;
@@ -46,8 +46,8 @@ public class minesweeper extends JPanel implements MouseListener, Runnable {
     public static int[] highscores = new int[3]; // array to store highscores
     // images
     public static BufferedImage[] GS = new BufferedImage[6]; // BufferedImage array for the different gamestates
-    public static BufferedImage[] Mine = new BufferedImage[3]; // 3 mines to correspond to the difficulties
-    public static BufferedImage[] Flag = new BufferedImage[3]; // 3 flags to correspond to the difficulties
+    public static BufferedImage Mine; // one mine file, 50x50
+    public static BufferedImage Flag; // one flag file, 50x50
 
     // Game stats
     public static int flags = numMines;
