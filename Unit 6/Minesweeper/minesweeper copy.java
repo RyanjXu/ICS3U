@@ -96,29 +96,19 @@ public class minesweeper extends JPanel implements MouseListener, Runnable {
     }
 
     public static void openCell(int row, int col) { // opens each cell and uses DFS to find the next cell
+        if(row<0 || row>=ROWS || col<0 || col<=COLS) return; 
         board[row][col].isOpened = true;
         if (board[row][col].isMine) { // if a mine is clicked we lose the game
             loseGame();
-        } else if (board[row][col].adjacentMines == 0) { // if an empty cell is clicked, we will implement a floodfill
-                                                         // algorithm to find empty cells
-            if (row - 1 >= 0 && col - 1 >= 0)
-                openCell(row - 1, col - 1); // top left corner
-            if (row - 1 >= 0)
-                openCell(row - 1, col); // top cell
-            if (row - 1 >= 0 && col + 1 < COLS)
-                openCell(row - 1, col + 1); // top right corner
-            if (col - 1 >= 0)
-                openCell(row, col - 1); // left cell
-            if (col + 1 < COLS)
-                openCell(row, col + 1); // right cell
-            if (row + 1 < ROWS && col - 1 >= 0)
-                openCell(row + 1, col - 1); // bottom left corner
-            if (row + 1 < ROWS)
-                openCell(row + 1, col); // bottom cell
-            if (row + 1 < ROWS && col + 1 < COLS)
-                openCell(row + 1, col + 1); // bottom right corner
-        } else {
-            return;
+        } else if (board[row][col].adjacentMines == 0) { // if an empty cell is clicked, we will recursively search for more
+            openCell(row - 1, col - 1); // top left corner
+            openCell(row - 1, col); // top cell
+            openCell(row - 1, col + 1); // top right corner
+            openCell(row, col - 1); // left cell
+            openCell(row, col + 1); // right cell
+            openCell(row + 1, col - 1); // bottom left corner
+            openCell(row + 1, col); // bottom cell
+            openCell(row + 1, col + 1); // bottom right corner
         }
     }
 
