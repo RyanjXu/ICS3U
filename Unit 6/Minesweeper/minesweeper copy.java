@@ -43,14 +43,13 @@ public class minesweeper extends JPanel implements MouseListener, Runnable {
     // GS3 --> Highscores
     // GS4 --> Game Lost
     // GS5 --> Game Won
-    public static String[] highscores = new String[3]; // array to store highscores
+    public static String[] highscores = new String[3]; // array to store highscore 
     // images
     public static BufferedImage[] GS = new BufferedImage[6]; // BufferedImage array for the different gamestates
     public static BufferedImage Mine; // one mine file, 50x50
     public static BufferedImage Flag; // one flag file, 50x50
     public static BufferedImage Unopened; // clickable cell 50x50
-    public static BufferedImage[] adjacentMines = new BufferedImage[9]; // 0 is empty cell, 1-8 represent the number of
-                                                                        // mines
+    public static BufferedImage[] adjacentMines = new BufferedImage[9]; // 0 is empty cell, 1-8 are the # of mines
 
     // Game stats
     public static int time = 0;
@@ -101,14 +100,13 @@ public class minesweeper extends JPanel implements MouseListener, Runnable {
         if (board[row][col].isMine) { // if a mine is clicked we lose the game
             loseGame();
         } else if (board[row][col].adjacentMines == 0) { // if an empty cell is clicked, we will recursively search for more
-            openCell(row - 1, col - 1); // top left corner
-            openCell(row - 1, col); // top cell
-            openCell(row - 1, col + 1); // top right corner
-            openCell(row, col - 1); // left cell
-            openCell(row, col + 1); // right cell
-            openCell(row + 1, col - 1); // bottom left corner
-            openCell(row + 1, col); // bottom cell
-            openCell(row + 1, col + 1); // bottom right corner
+            for(int r = -1; r<2; r++) { // recursively opens all the cells around it
+                for(int c = -1; c<2; c++) {
+                    if(!r==0 || !c==0) { //makes sure we don't check the current cell
+                    openCell(r, c);
+                    }
+                }
+            }
         }
     }
 
@@ -159,6 +157,7 @@ public class minesweeper extends JPanel implements MouseListener, Runnable {
                 g.drawImage(GS[gameState], 0, 0, null);
                 break;
             case 2: // Game Screen
+                g.drawImage(GS[gameState], 0, 0, null);
                 for (int i = 0; i < ROWS; i++) {
                     for (int j = 0; j < COLS; j++) {
                         if (board[i][j].isFlagged) {
