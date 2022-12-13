@@ -28,6 +28,7 @@ public class minesweeper extends JPanel implements MouseListener, Runnable {
     // 1 = easy, 10 x 10, 10 mines, 500x500 gameboard
     // 2 = medium, 16 x 16, 40 mines, 800x800 gameboard
     // 3 = hard, 30 x 16, 99 mines, 1500x800 gameboard
+    public static int[] difficultyOffset = {0, 100, 400, 550}; // offset of cells for difficulty, 100 is added for index
     public static int ROWS = 10;
     public static int COLS = 10;
     public static int numMines = 10;
@@ -161,11 +162,11 @@ public class minesweeper extends JPanel implements MouseListener, Runnable {
                 for (int i = 0; i < ROWS; i++) {
                     for (int j = 0; j < COLS; j++) {
                         if (board[i][j].isFlagged) {
-                            g.drawImage(Flag, 0, 0, null);
+                            g.drawImage(Flag, difficultyOffset[difficulty], 100, null);
                         } else if (!board[i][j].isOpened) {
-                            g.drawImage(Unopened, 0, 0, null);
+                            g.drawImage(Unopened, difficultyOffset[difficulty], 100, null);
                         } else {
-                            g.drawImage(adjacentMines[board[i][j].adjacentMines], 0, 0, null);
+                            g.drawImage(adjacentMines[board[i][j].adjacentMines], difficultyOffset[difficulty], 100, null);
                         }
                     }
                 }
